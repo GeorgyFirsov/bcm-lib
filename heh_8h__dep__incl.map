@@ -1,0 +1,5 @@
+<map id="include/modes/heh/heh.h" name="include/modes/heh/heh.h">
+<area shape="rect" id="node1" title="HEH mode of operation header." alt="" coords="60,5,245,32"/>
+<area shape="rect" id="node2" href="$bcmlib_8h.html" title="Library header with supported modes of operation." alt="" coords="5,80,135,107"/>
+<area shape="rect" id="node3" href="$heh_8c.html" title="HEH mode of operation implementation." alt="" coords="159,80,315,107"/>
+</map>
