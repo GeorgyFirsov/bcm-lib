@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(bcm-lib VERSION 1.0.3)
+cmake_minimum_required(VERSION 3.5.0)
+project(bcm-lib VERSION 1.0.0)
 
 #
 # Global config
@@ -101,7 +101,7 @@ option(GALOISLIB_KERNEL_MODE ""                         ${BCMLIB_BUILD_KERNEL_LI
 FetchContent_Declare(
     galois-lib
     GIT_REPOSITORY https://github.com/GeorgyFirsov/galois-lib.git
-    GIT_TAG        v1.0.5
+    GIT_TAG        v1.0.6
 )
 
 option(BCLIB_GENERATE_DOCS ""                           OFF)
@@ -111,7 +111,7 @@ option(BCLIB_KERNEL_MODE ""                             ${BCMLIB_BUILD_KERNEL_LI
 FetchContent_Declare(
     bc-lib
     GIT_REPOSITORY https://github.com/GeorgyFirsov/bc-lib.git
-    GIT_TAG        v1.0.5
+    GIT_TAG        v1.0.7
 )
 
 FetchContent_MakeAvailable(galois-lib bc-lib)
