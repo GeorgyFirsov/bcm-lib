@@ -3,7 +3,6 @@
  * @brief XTS mode of operation implementation
  */
 
-
 #include "modes/xts/xts.h"
 #include "common/utils.h"
 #include "bclib.h"
