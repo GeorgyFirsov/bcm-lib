@@ -72,6 +72,7 @@ void xts_decrypt_perform(unsigned long long sector, const unsigned char* in, uns
                          const KEY* data_key, const KEY* tweak_key,
                          unsigned char* out, const BLOCK_CIPHER* cipher);
 
+
 #ifdef __cplusplus
 }
 #endif  // __cplusplus
