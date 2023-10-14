@@ -175,16 +175,21 @@ if (BCMLIB_BUILD_LIB)
     set(BCMLIB_HEH_SOURCES_DIR							${BCMLIB_MODES_SOURCES_DIR}/heh)
     set(BCMLIB_HEH_INCLUDE_DIR							${BCMLIB_MODES_INCLUDE_DIR}/heh)
 
+    set(BCMLIB_CMAC_SOURCES_DIR							${BCMLIB_MODES_SOURCES_DIR}/cmac)
+    set(BCMLIB_CMAC_INCLUDE_DIR							${BCMLIB_MODES_INCLUDE_DIR}/cmac)
+
     #
     # Source files
     #
     set(BCMLIB_SOURCE_FILES								${BCMLIB_XTS_SOURCES_DIR}/xts.c
                                                         ${BCMLIB_CMC_SOURCES_DIR}/cmc.c
-                                                        ${BCMLIB_HEH_SOURCES_DIR}/heh.c)
+                                                        ${BCMLIB_HEH_SOURCES_DIR}/heh.c
+                                                        ${BCMLIB_CMAC_SOURCES_DIR}/cmac.c)
 
     set(BCMLIB_HEADER_FILES								${BCMLIB_XTS_INCLUDE_DIR}/xts.h
                                                         ${BCMLIB_CMC_INCLUDE_DIR}/cmc.h
                                                         ${BCMLIB_HEH_INCLUDE_DIR}/heh.h
+                                                        ${BCMLIB_CMAC_INCLUDE_DIR}/cmac.h
                                                         ${BCMLIB_COMMON_INCLUDE_DIR}/utils.h
                                                         ${BCMLIB_INCLUDE_ROOT}/bcmlib.h)
 
@@ -228,10 +233,11 @@ if (BCMLIB_BUILD_LIB)
 
 
     #
-    # On non-Windows builds it is necessary to add pclmul support
+    # On non-Windows builds it is necessary to add some intrinsics support
     #
     if (NOT BCMLIB_WINDOWS_BUILD)
         target_compile_options(bcm-lib PRIVATE 			-mpclmul)
+        target_compile_options(bcm-lib PRIVATE          -msse4.1)
     endif (NOT BCMLIB_WINDOWS_BUILD)
 
 endif (BCMLIB_BUILD_LIB)
