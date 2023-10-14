@@ -35,7 +35,7 @@ typedef enum tag_cmac_verify_result
 
 
 /**
- * @brief Computes CMAC using AES-128 as a block cipher.
+ * @brief Computes CMAC using 182-bit block cipher.
  *        Tag is 64 bit long and is stored in most significant
  *        bits of 128-bit output value.
  * 
