@@ -22,7 +22,8 @@ set(BCMLIB_TESTS_INCLUDE_DIRECTORIES	        ${BCMLIB_INCLUDE_DIRECTORIES}
 #
 set(BCMLIB_SOURCE_FILES                         ${BCMLIB_TESTS_CASES}/cmc_kuznyechik.cpp
                                                 ${BCMLIB_TESTS_CASES}/heh_kuznyechik.cpp
-                                                ${BCMLIB_TESTS_CASES}/xts_kuznyechik.cpp)
+                                                ${BCMLIB_TESTS_CASES}/xts_kuznyechik.cpp
+                                                ${BCMLIB_TESTS_CASES}/cmac_kuznyechik.cpp)
 
 set(BCMLIB_HEADER_FILES                         ${BCMLIB_TESTS_INCLUDE}/test_data.hpp
                                                 ${BCMLIB_TESTS_INCLUDE}/test_common.hpp
