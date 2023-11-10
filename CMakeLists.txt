@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
-project(bcm-lib VERSION 1.0.0)
+project(bcm-lib VERSION 1.0.1)
 
 #
 # Global config
@@ -111,7 +111,7 @@ option(BCLIB_KERNEL_MODE ""                             ${BCMLIB_BUILD_KERNEL_LI
 FetchContent_Declare(
     bc-lib
     GIT_REPOSITORY https://github.com/GeorgyFirsov/bc-lib.git
-    GIT_TAG        v1.0.7
+    GIT_TAG        v1.1.0
 )
 
 FetchContent_MakeAvailable(galois-lib bc-lib)
