@@ -23,13 +23,23 @@ typedef struct tagCMACP_SUBKEY
 /**
  * @brief Mask that truncates a tag
  */
-BCMLIB_FORCEINLINE __m128i cmacp_mask()
+BCMLIB_FORCEINLINE __m128i cmacp_mask(unsigned long significant_bits)
 {
     //
-    // 64 most significant bits
+    // Just lookup for predefined values
     //
 
-    return _mm_setr_epi32(0xffffffff, 0xffffffff, 0x00, 0x00);
+    switch (significant_bits)
+    {
+    case BCMLIB_CMAC_TAG_SIZE_64:
+        return _mm_setr_epi32(0xffffffff, 0xffffffff, 0x00000000, 0x00000000);
+
+    case BCMLIB_CMAC_TAG_SIZE_128:
+        return _mm_setr_epi32(0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff);
+
+    default:
+        return _mm_setr_epi32(0x00000000, 0x00000000, 0x00000000, 0x00000000);
+    }
 }
 
 
@@ -120,19 +130,19 @@ BCMLIB_FORCEINLINE void cmacp_subkeys_init(const KEY* key, CMACP_SUBKEY* subkey1
 
 
 void cmac_digest(const unsigned char* in, unsigned long blocks,
-                 const unsigned char* key, unsigned char* out,
-                 const BLOCK_CIPHER* cipher)
+                 const unsigned char* key, unsigned long significant_bits,
+                 unsigned char* out, const BLOCK_CIPHER* cipher)
 {
     KEY internal_key;
     cipher->initialize_encrypt_key(key, &internal_key);
 
-    cmac_digest_perform(in, blocks, &internal_key, out, cipher);
+    cmac_digest_perform(in, blocks, &internal_key, significant_bits, out, cipher);
 }
 
 
 void cmac_digest_perform(const unsigned char* in, unsigned long blocks,
-                         const KEY* key, unsigned char* out,
-                         const BLOCK_CIPHER* cipher)
+                         const KEY* key, unsigned long significant_bits,
+                         unsigned char* out, const BLOCK_CIPHER* cipher)
 {
     unsigned int block;
 
@@ -178,25 +188,25 @@ void cmac_digest_perform(const unsigned char* in, unsigned long blocks,
     // Now we need to truncate MAC to half of the block
     //
 
-    mac_mask      = cmacp_mask();
+    mac_mask      = cmacp_mask(significant_bits);
     *internal_out = _mm_and_si128(temporary, mac_mask);
 }
 
 
 cmac_verify_result cmac_verify(const unsigned char* in, unsigned long blocks,
                                const unsigned char* key, const unsigned char* tag,
-                               const BLOCK_CIPHER* cipher)
+                               unsigned long significant_bits, const BLOCK_CIPHER* cipher)
 {
     KEY internal_key;
     cipher->initialize_encrypt_key(key, &internal_key);
 
-    return cmac_verify_perform(in, blocks, &internal_key, tag, cipher);
+    return cmac_verify_perform(in, blocks, &internal_key, tag, significant_bits, cipher);
 }
 
 
 cmac_verify_result cmac_verify_perform(const unsigned char* in, unsigned long blocks,
                                        const KEY* key, const unsigned char* tag,
-                                       const BLOCK_CIPHER* cipher)
+                                       unsigned long significant_bits, const BLOCK_CIPHER* cipher)
 {
     //
     // Tag cannot have length greater than 128 bits (Kuznyechik block length)
@@ -211,7 +221,7 @@ cmac_verify_result cmac_verify_perform(const unsigned char* in, unsigned long bl
     // data and compare with
     //
 
-    cmac_digest_perform(in, blocks, key, (unsigned char*)&new_tag, cipher);
+    cmac_digest_perform(in, blocks, key, significant_bits, (unsigned char*)&new_tag, cipher);
     given_tag = _mm_loadu_si128((const __m128i*)tag);
 
     //

@@ -9,6 +9,12 @@
 namespace test::data::mac {
 
 /**
+ * @brief Number of significant bits for MAC.
+ */
+static constexpr unsigned long significant_bits = BCMLIB_CMAC_TAG_SIZE_64;
+
+
+/**
  * @brief Digest for CMAC-KUZNYECHIK algorithm.
  */
 BCMLIB_TESTS_ALIGN16 static constexpr unsigned char digest[] = {
@@ -51,7 +57,8 @@ TEST(CmacKuznyechik, Digest)
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
 
-    cmac_digest(mac::data, mac::blocks, mac::key, digest, &cipher);
+    cmac_digest(mac::data, mac::blocks, mac::key,
+                mac::significant_bits, digest, &cipher);
 
     EXPECT_PRED3(test::details::EqualBlocks, mac::digest, digest,
                  KUZNYECHIK_BLOCK_SIZE);
@@ -77,8 +84,8 @@ TEST(CmacKuznyechik, VerifyCorrect)
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
 
-    const auto result = cmac_verify(mac::data, mac::blocks, mac::key,
-                                    mac::digest, &cipher);
+    const auto result = cmac_verify(mac::data, mac::blocks, mac::key, mac::digest,
+                                    mac::significant_bits, &cipher);
 
     EXPECT_EQ(result, cmac_verify_result::cmac_valid);
 }
@@ -103,8 +110,8 @@ TEST(CmacKuznyechik, VerifyIncorrect)
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
 
-    const auto result = cmac_verify(mac::data, mac::blocks, mac::key,
-                                    mac::incorrect_digest, &cipher);
+    const auto result = cmac_verify(mac::data, mac::blocks, mac::key, mac::incorrect_digest,
+                                    mac::significant_bits, &cipher);
 
     EXPECT_EQ(result, cmac_verify_result::cmac_invalid);
 }
