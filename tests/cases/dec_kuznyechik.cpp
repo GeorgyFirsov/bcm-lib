@@ -9,25 +9,27 @@
 namespace test::data::enc {
 
 /**
- * 
+ * @brief Partition and sector numbers for DEC-KUZNYECHIK algorithm.
  */
 static constexpr auto partition = tweak;
 static constexpr auto sector    = tweak;
 
+
 /**
- * 
+ * @brief Partition and sector counters for DEC-KUZNYECHIK algorithm.
  */
 static constexpr auto partition_counter = 0xcafebabe;
 static constexpr auto sector_counter    = 0xdeadbeef;
+
 
 /**
  * @brief Ciphertext for DEC-KUZNYECHIK algorithm.
  */
 BCMLIB_TESTS_ALIGN16 static constexpr unsigned char ciphertext[] = {
-    0xe6, 0x3d, 0x36, 0x20, 0x98, 0x10, 0xbe, 0x6f,
-    0xb9, 0x16, 0xca, 0x61, 0xee, 0x0a, 0x9c, 0xc6,
-    0x79, 0xb8, 0x29, 0xe6, 0xe3, 0x4d, 0xc6, 0xf3,
-    0x5b, 0x4f, 0x37, 0x54, 0x28, 0xd6, 0x78, 0x5f
+    0x6a, 0xc5, 0x6d, 0x76, 0x40, 0xb8, 0x95, 0xac,
+    0x78, 0x3b, 0xd6, 0x24, 0x8a, 0x53, 0x59, 0x3a, 
+    0x79, 0xd9, 0xbe, 0x29, 0xf8, 0x65, 0x15, 0x71, 
+    0xbb, 0xd6, 0xda, 0x32, 0x59, 0x51, 0x88, 0x75
 };
 
 }  // namespace test::data::enc
@@ -55,11 +57,6 @@ TEST(DecKuznyechik, Encrypt)
     dec_encrypt(enc::partition, enc::partition_counter, enc::sector, enc::sector_counter,
                 enc::plaintext, enc::blocks, enc::primary_key, ciphertext, &cipher);
 
-    for (auto c : ciphertext)
-    {
-//printf("0x%02x, ", c);
-    }
-
     EXPECT_PRED4(test::details::EqualDataUnits, enc::ciphertext,
                  ciphertext, enc::blocks, KUZNYECHIK_BLOCK_SIZE);
 }
@@ -86,11 +83,6 @@ TEST(DecKuznyechik, Decrypt)
 
     dec_decrypt(enc::partition, enc::partition_counter, enc::sector, enc::sector_counter,
                 enc::ciphertext, enc::blocks, enc::primary_key, plaintext, &cipher);
-
-for (auto c : plaintext)
-    {
-     //   printf("0x%02x, ", c);
-    }
 
     EXPECT_PRED4(test::details::EqualDataUnits, enc::plaintext,
                  plaintext, enc::blocks, KUZNYECHIK_BLOCK_SIZE);

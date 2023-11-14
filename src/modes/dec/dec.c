@@ -13,20 +13,20 @@
 
 
 /**
- * 
+ * @brief Internal context, that is used in KDF functions.
  */
 typedef struct tagDECP_KDF_CONTEXT
 {
-    const BLOCK_CIPHER* cipher; /**<  */
+    const BLOCK_CIPHER* cipher; /**< Block cipher instance for CMAC */
 
-    unsigned long mac_size; /**< */
+    unsigned long tag_size; /**< CMAC tag size in bits */
 
-    unsigned long format_blocks; /**<  */
+    unsigned long format_blocks; /**< Number of blocks in `decp_kdf_format` output */
 } DECP_KDF_CONTEXT;
 
 
 /**
- * 
+ * @brief Initializes master key for DEC mode.
  */
 BCMLIB_FORCEINLINE void decp_initialize_key(const unsigned char* key, KEY* out, const BLOCK_CIPHER* cipher)
 {
@@ -35,7 +35,7 @@ BCMLIB_FORCEINLINE void decp_initialize_key(const unsigned char* key, KEY* out, 
 
 
 /**
- * 
+ * @brief Calculates DEC's v parameter.
  */
 BCMLIB_FORCEINLINE unsigned long long decp_calculate_v(unsigned long blocks, unsigned long block_size)
 {
@@ -55,7 +55,7 @@ BCMLIB_FORCEINLINE unsigned long long decp_calculate_v(unsigned long blocks, uns
 
 
 /**
- * 
+ * @brief Implementation of key initialization function for KDF.
  */
 BCMLIB_FORCEINLINE void decp_kdf_initialize_key(const unsigned char* key, void* user_context, unsigned char* out)
 {
@@ -67,7 +67,7 @@ BCMLIB_FORCEINLINE void decp_kdf_initialize_key(const unsigned char* key, void* 
 
 
 /**
- * 
+ * @brief Implementation of format function for KDF.
  */
 BCMLIB_FORCEINLINE void decp_kdf_format(const unsigned char* z, unsigned long c, const unsigned char* p,
                                         const unsigned char* u, const unsigned char* a, const unsigned char* l,
@@ -89,14 +89,14 @@ BCMLIB_FORCEINLINE void decp_kdf_format(const unsigned char* z, unsigned long c,
 
 
 /**
- * 
+ * @brief Implementation of MAC function for KDF.
  */
 BCLIB_FORCEINLINE void decp_kdf_mac(const unsigned char* key, const unsigned char* in, void* user_context, unsigned char* out)
 {
     const KEY* internal_key         = (const KEY*)key;
     const DECP_KDF_CONTEXT* context = (const DECP_KDF_CONTEXT*)user_context;
 
-    cmac_digest_perform(in, context->format_blocks, internal_key, context->mac_size, out, context->cipher);
+    cmac_digest_perform(in, context->format_blocks, internal_key, context->tag_size, out, context->cipher);
 }
 
 
@@ -138,14 +138,14 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
 
     DECP_KDF_CONTEXT kdf_user_context = {
         .cipher        = cipher,
-        .mac_size      = BCMLIB_CMAC_TAG_SIZE_128 >> 3,
+        .tag_size      = BCMLIB_CMAC_TAG_SIZE_128,
         .format_blocks = BCMLIB_COUNTOF(kdf_format_buffer)
     };
 
     R1323665_1_022_2018_KDF2_CONTEXT kdf_context = {
-        .key_buffer     = (unsigned char*)&master_key,
-        .format_buffer  = (unsigned char*)&kdf_format_buffer,
-        .mac_size       = kdf_user_context.mac_size,
+        .key_buffer     = (unsigned char*)master_key,
+        .format_buffer  = (unsigned char*)kdf_format_buffer,
+        .mac_size       = kdf_user_context.tag_size >> 3,
         .user_context   = &kdf_user_context,
         .initialize_key = decp_kdf_initialize_key,
         .format         = decp_kdf_format,
