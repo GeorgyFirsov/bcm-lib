@@ -173,11 +173,16 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
     //   K_p = kdf2(master_key, IV, P)
     //
     // Since master key is already initialized here,
-    // I can use faster `kdf2_perform` function
+    // I can use faster `kdf2_perform` function.
+    //
+    // Note, that due to endianness, I need to pass
+    // halves of 128-bit values in reverse order
+    // in comparison to formula.
     //
 
     kdf_iv = _mm_setzero_si128();
-    kdf_p  = _mm_set_epi64x((long long)partition, (long long)partition_counter);
+    kdf_p  = _mm_set_epi64x(bcmlib_swap_endian_ll(partition_counter),
+                            bcmlib_swap_endian_ll(partition));
 
     kdf2_perform((const unsigned char*)&kdf_iv, NULL, (const unsigned char*)&kdf_p, NULL, NULL,
                  cipher->key_size, &kdf_context, partition_key_buffer.key);
@@ -190,8 +195,10 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
     //
 
     normalized_sector_counter = decp_fraction_ceil(sector_counter, decp_calculate_v(blocks, cipher->block_size));
-    kdf_iv                    = _mm_set_epi64x((long long)partition, 0);
-    kdf_p                     = _mm_set_epi64x((long long)normalized_sector_counter, (long long)sector);
+
+    kdf_iv = _mm_set_epi64x(bcmlib_swap_endian_ll(partition), 0);
+    kdf_p  = _mm_set_epi64x(bcmlib_swap_endian_ll(sector),
+                            bcmlib_swap_endian_ll(normalized_sector_counter));
 
     kdf_context.key_buffer = (unsigned char*)&partition_key;
 
@@ -210,7 +217,8 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
 
     for (block = 0; block < blocks; ++block)
     {
-        counter = _mm_set_epi64x((long long)sector, (long long)(counter_base + block));
+        counter = _mm_set_epi64x(bcmlib_swap_endian_ll(counter_base + block),
+                                 bcmlib_swap_endian_ll(sector));
 
         cipher->encrypt_block(counter, &sector_key, &internal_out[block]);
         internal_out[block] = _mm_xor_si128(internal_in[block], internal_out[block]);

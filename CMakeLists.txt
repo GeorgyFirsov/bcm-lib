@@ -169,6 +169,8 @@ if (BCMLIB_BUILD_LIB)
     #
     set(BCMLIB_MODES_SOURCES_DIR						${BCMLIB_SOURCES_ROOT}/modes)
     set(BCMLIB_MODES_INCLUDE_DIR						${BCMLIB_INCLUDE_ROOT}/modes)
+
+    set(BCMLIB_COMMON_SOURCES_DIR						${BCMLIB_SOURCES_ROOT}/common)
     set(BCMLIB_COMMON_INCLUDE_DIR						${BCMLIB_INCLUDE_ROOT}/common)
 
     set(BCMLIB_INTERNAL_INCLUDE_DIRECTORIES             ${BCMLIB_INCLUDE_DIRECTORIES}
@@ -199,7 +201,8 @@ if (BCMLIB_BUILD_LIB)
                                                         ${BCMLIB_CMC_SOURCES_DIR}/cmc.c
                                                         ${BCMLIB_HEH_SOURCES_DIR}/heh.c
                                                         ${BCMLIB_CMAC_SOURCES_DIR}/cmac.c
-                                                        ${BCMLIB_DEC_SOURCES_DIR}/dec.c)
+                                                        ${BCMLIB_DEC_SOURCES_DIR}/dec.c
+                                                        ${BCMLIB_COMMON_SOURCES_DIR}/utils.c)
 
     set(BCMLIB_HEADER_FILES								${BCMLIB_XTS_INCLUDE_DIR}/xts.h
                                                         ${BCMLIB_CMC_INCLUDE_DIR}/cmc.h

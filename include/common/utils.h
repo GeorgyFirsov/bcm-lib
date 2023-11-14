@@ -35,7 +35,7 @@
  * @brief Static assertion for C language (prior to C11).
  */
 #define BCMLIB_STATIC_ASSERT(cond, msg) \
-   typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]
+    typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]
 
 
 /**
@@ -48,6 +48,29 @@
  * @brief Returns number of elements in a static array.
  */
 #define BCMLIB_COUNTOF(arr) (sizeof((arr)) / sizeof((arr)[0]))
+
+
+/**
+ * @brief Swaps byte order in arbitrary integer type inplace.
+ */
+#define BCMLIB_SWAP_ENDIAN_INPLACE(value)                                                                        \
+    do                                                                                                           \
+    {                                                                                                            \
+        unsigned char* bsw_internal_value = (unsigned char*)&value;                                              \
+        for (unsigned long long idx = 0, swp_idx = sizeof(value) - 1; idx < sizeof(value) / 2; ++idx, --swp_idx) \
+        {                                                                                                        \
+            bsw_internal_value[idx]     = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \
+            bsw_internal_value[swp_idx] = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \
+            bsw_internal_value[idx]     = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \
+        }                                                                                                        \
+    }                                                                                                            \
+    while (0)
+
+
+/**
+ * @brief Swaps byte order of a `long long` value.
+ */
+long long bcmlib_swap_endian_ll(long long value);
 
 
 #endif  // !BCMLIB_UTILS_INCLUDED
