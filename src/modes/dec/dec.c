@@ -83,8 +83,8 @@ BCMLIB_FORCEINLINE void decp_kdf_initialize_key(const unsigned char* key, void* 
 /**
  * @brief Implementation of format function for KDF.
  */
-BCMLIB_FORCEINLINE void decp_kdf_format(const unsigned char* z, unsigned long c, const unsigned char* p,
-                                        const unsigned char* u, const unsigned char* a, const unsigned char* l,
+BCMLIB_FORCEINLINE void decp_kdf_format(const unsigned char* z, unsigned long long c, const unsigned char* p,
+                                        const unsigned char* u, const unsigned char* a, unsigned long long l,
                                         void* user_context, unsigned char* out)
 {
     BCMLIB_UNUSED(c);
@@ -132,7 +132,8 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
                          const unsigned char* in, unsigned long blocks, const KEY* master_key,
                          unsigned char* out, const BLOCK_CIPHER* cipher)
 {
-    unsigned long long counter_base = sector_counter * blocks;
+    unsigned long long internal_key_size = cipher->key_size << 3;
+    unsigned long long counter_base      = sector_counter * blocks;
     unsigned long long normalized_sector_counter;
     unsigned long block;
 
@@ -184,8 +185,8 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
     kdf_p  = _mm_set_epi64x(bcmlib_swap_endian_ll(partition_counter),
                             bcmlib_swap_endian_ll(partition));
 
-    kdf2_perform((const unsigned char*)&kdf_iv, NULL, (const unsigned char*)&kdf_p, NULL, NULL,
-                 cipher->key_size, &kdf_context, partition_key_buffer.key);
+    kdf2_perform((const unsigned char*)&kdf_iv, internal_key_size, (const unsigned char*)&kdf_p,
+                 NULL, NULL, &kdf_context, partition_key_buffer.key);
 
     //
     // Derive sector key via:
@@ -202,9 +203,8 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
 
     kdf_context.key_buffer = (unsigned char*)&partition_key;
 
-    kdf2(partition_key_buffer.key, (const unsigned char*)&kdf_iv, NULL,
-         (const unsigned char*)&kdf_p, NULL, NULL, cipher->key_size,
-         &kdf_context, sector_key_buffer.key);
+    kdf2(partition_key_buffer.key, (const unsigned char*)&kdf_iv, internal_key_size,
+         (const unsigned char*)&kdf_p, NULL, NULL, &kdf_context, sector_key_buffer.key);
 
     //
     // Let's perform encryption
