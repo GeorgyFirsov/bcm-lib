@@ -25,13 +25,17 @@ typedef struct tagKEY KEY;
 
 /**
  * @brief Encrypts a sector in DEC mode of operation.
+ * 
+ * This function does not manage any counters and does not
+ * perform reencryption. It only encrypts data in a sector.
  *
- * @param partition 
- * @param sector number of sector to encrypt
+ * @param partition partition number
+ * @param partition_counter partition counter
+ * @param sector number of sector in the partition to encrypt
+ * @param sector_counter sector counter
  * @param in data of the sector
  * @param blocks number of blocks in the sector
- * @param data_key key used to encrypt data
- * @param tweak_key key used to derive a tweak
+ * @param master_key key used to encrypt data
  * @param out ciphertext
  * @param cipher cipher interface to use
  */
@@ -54,12 +58,13 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
 /**
  * @brief Decrypts a sector in DEC mode of operation.
  * 
- * @param partition 
- * @param sector number of sector to decrypt
+ * @param partition partition number
+ * @param partition_counter partition counter
+ * @param sector number of sector in the partition to encrypt
+ * @param sector_counter sector counter
  * @param in encrypted data of the sector
  * @param blocks number of blocks in the sector
- * @param data_key key used to decrypt data
- * @param tweak_key key used to derive a tweak
+ * @param master_key key used to decrypt data
  * @param out plaintext
  * @param cipher cipher interface to use
  */
