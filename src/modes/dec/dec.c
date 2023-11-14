@@ -196,7 +196,7 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
 
     normalized_sector_counter = decp_fraction_ceil(sector_counter, decp_calculate_v(blocks, cipher->block_size));
 
-    kdf_iv = _mm_set_epi64x(bcmlib_swap_endian_ll(partition), 0);
+    kdf_iv = _mm_set_epi64x(0, bcmlib_swap_endian_ll(partition));
     kdf_p  = _mm_set_epi64x(bcmlib_swap_endian_ll(sector),
                             bcmlib_swap_endian_ll(normalized_sector_counter));
 
