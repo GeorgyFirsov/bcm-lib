@@ -114,7 +114,17 @@ FetchContent_Declare(
     GIT_TAG        v1.1.0
 )
 
-FetchContent_MakeAvailable(galois-lib bc-lib)
+option(KDFLIB_GENERATE_DOCS ""                          OFF)
+option(KDFLIB_ENABLE_TESTING ""                         OFF)
+option(KDFLIB_KERNEL_MODE ""                            ${BCMLIB_BUILD_KERNEL_LIB})
+
+FetchContent_Declare(
+    kdf-lib
+    GIT_REPOSITORY https://github.com/GeorgyFirsov/kdf-lib.git
+    GIT_TAG        f9522bf  # kdf-lib is not released for now
+)
+
+FetchContent_MakeAvailable(galois-lib bc-lib kdf-lib)
 
 #
 # Set global directories
@@ -164,7 +174,8 @@ if (BCMLIB_BUILD_LIB)
     set(BCMLIB_INTERNAL_INCLUDE_DIRECTORIES             ${BCMLIB_INCLUDE_DIRECTORIES}
                                                         ${BCMLIB_COMMON_INCLUDE_DIR}
                                                         ${bc-lib_SOURCE_DIR}/include
-                                                        ${galois-lib_SOURCE_DIR}/include)
+                                                        ${galois-lib_SOURCE_DIR}/include
+                                                        ${kdf-lib_SOURCE_DIR}/include)
 
     set(BCMLIB_XTS_SOURCES_DIR							${BCMLIB_MODES_SOURCES_DIR}/xts)
     set(BCMLIB_XTS_INCLUDE_DIR							${BCMLIB_MODES_INCLUDE_DIR}/xts)
@@ -178,18 +189,23 @@ if (BCMLIB_BUILD_LIB)
     set(BCMLIB_CMAC_SOURCES_DIR							${BCMLIB_MODES_SOURCES_DIR}/cmac)
     set(BCMLIB_CMAC_INCLUDE_DIR							${BCMLIB_MODES_INCLUDE_DIR}/cmac)
 
+    set(BCMLIB_DEC_SOURCES_DIR							${BCMLIB_MODES_SOURCES_DIR}/dec)
+    set(BCMLIB_DEC_INCLUDE_DIR							${BCMLIB_MODES_INCLUDE_DIR}/dec)
+
     #
     # Source files
     #
     set(BCMLIB_SOURCE_FILES								${BCMLIB_XTS_SOURCES_DIR}/xts.c
                                                         ${BCMLIB_CMC_SOURCES_DIR}/cmc.c
                                                         ${BCMLIB_HEH_SOURCES_DIR}/heh.c
-                                                        ${BCMLIB_CMAC_SOURCES_DIR}/cmac.c)
+                                                        ${BCMLIB_CMAC_SOURCES_DIR}/cmac.c
+                                                        ${BCMLIB_DEC_SOURCES_DIR}/dec.c)
 
     set(BCMLIB_HEADER_FILES								${BCMLIB_XTS_INCLUDE_DIR}/xts.h
                                                         ${BCMLIB_CMC_INCLUDE_DIR}/cmc.h
                                                         ${BCMLIB_HEH_INCLUDE_DIR}/heh.h
                                                         ${BCMLIB_CMAC_INCLUDE_DIR}/cmac.h
+                                                        ${BCMLIB_DEC_INCLUDE_DIR}/dec.h
                                                         ${BCMLIB_COMMON_INCLUDE_DIR}/utils.h
                                                         ${BCMLIB_INCLUDE_ROOT}/bcmlib.h)
 
@@ -225,10 +241,12 @@ if (BCMLIB_BUILD_LIB)
     #
     target_link_libraries(bcm-lib PRIVATE                galois-lib) 
     target_link_libraries(bcm-lib PRIVATE                bc-lib) 
+    target_link_libraries(bcm-lib PRIVATE                kdf-lib) 
 
     if (BCLIB_BUILD_KERNEL_LIB)
         target_link_libraries(bcm-lib-km PRIVATE         galois-lib-km)
         target_link_libraries(bcm-lib-km PRIVATE         bc-lib-km)
+        target_link_libraries(bcm-lib-km PRIVATE         kdf-lib-km)
     endif (BCLIB_BUILD_KERNEL_LIB)
 
 

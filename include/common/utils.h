@@ -37,4 +37,17 @@
 #define BCMLIB_STATIC_ASSERT(cond, msg) \
    typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]
 
+
+/**
+ * @brief Macro to suppress unused variable warning.
+ */
+#define BCMLIB_UNUSED(var) ((void)(var))
+
+
+/**
+ * @brief Returns number of elements in a static array.
+ */
+#define BCMLIB_COUNTOF(arr) (sizeof((arr)) / sizeof((arr)[0]))
+
+
 #endif  // !BCMLIB_UTILS_INCLUDED
