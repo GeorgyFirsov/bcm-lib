@@ -55,6 +55,20 @@ BCMLIB_FORCEINLINE unsigned long long decp_calculate_v(unsigned long blocks, uns
 
 
 /**
+ * @brief Implements ceil(divisible / divisor).
+ * 
+ * The function is not quite elegant, but simple :)
+ */
+BCMLIB_FORCEINLINE unsigned long long decp_fraction_ceil(unsigned long long divisible, unsigned long long divisor)
+{
+    unsigned long long quotient  = divisible / divisor;
+    unsigned long long remainder = divisible % divisor;
+
+    return quotient + (remainder != 0) ? 1 : 0;
+}
+
+
+/**
  * @brief Implementation of key initialization function for KDF.
  */
 BCMLIB_FORCEINLINE void decp_kdf_initialize_key(const unsigned char* key, void* user_context, unsigned char* out)
@@ -175,7 +189,7 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
     //   K_s = kdf2(K_p, IV, P)
     //
 
-    normalized_sector_counter = sector_counter / decp_calculate_v(blocks, cipher->block_size);
+    normalized_sector_counter = decp_fraction_ceil(sector_counter, decp_calculate_v(blocks, cipher->block_size));
     kdf_iv                    = _mm_set_epi64x((long long)partition, 0);
     kdf_p                     = _mm_set_epi64x((long long)normalized_sector_counter, (long long)sector);
 
