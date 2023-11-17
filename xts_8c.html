@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">bcm-lib
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">Tiny library with cryptographic algorithms</div>
   </td>
@@ -109,21 +109,21 @@ Include dependency graph for xts.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:afc36bc8b7f278ca30a59a484744858e6"><td class="memItemLeft" align="right" valign="top"><a id="afc36bc8b7f278ca30a59a484744858e6"></a>
-BCMLIB_FORCEINLINE __m128i&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#afc36bc8b7f278ca30a59a484744858e6">xtsp_tweak_init</a> (unsigned long long sector, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+BCMLIB_FORCEINLINE __m128i&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#afc36bc8b7f278ca30a59a484744858e6">xtsp_tweak_init</a> (unsigned long long sector, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:afc36bc8b7f278ca30a59a484744858e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize XTS tweak. <br /></td></tr>
 <tr class="separator:afc36bc8b7f278ca30a59a484744858e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a539013e0ea1f89eefb0c59daafd71a3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#a539013e0ea1f89eefb0c59daafd71a3e">xts_encrypt</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const unsigned char *data_key, const unsigned char *tweak_key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+<tr class="memitem:a539013e0ea1f89eefb0c59daafd71a3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#a539013e0ea1f89eefb0c59daafd71a3e">xts_encrypt</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const unsigned char *data_key, const unsigned char *tweak_key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:a539013e0ea1f89eefb0c59daafd71a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a sector in XTS mode of operation.  <a href="xts_8c.html#a539013e0ea1f89eefb0c59daafd71a3e">More...</a><br /></td></tr>
 <tr class="separator:a539013e0ea1f89eefb0c59daafd71a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5e0f0faaefc531045547064ffa0a2a9"><td class="memItemLeft" align="right" valign="top"><a id="ae5e0f0faaefc531045547064ffa0a2a9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#ae5e0f0faaefc531045547064ffa0a2a9">xts_encrypt_perform</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *data_key, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#ae5e0f0faaefc531045547064ffa0a2a9">xts_encrypt_perform</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *data_key, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:ae5e0f0faaefc531045547064ffa0a2a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs actual encryption in XTS mode. This function exists for testing purposes. <br /></td></tr>
 <tr class="separator:ae5e0f0faaefc531045547064ffa0a2a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62006a7e34cebca347d269f9b217c55c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#a62006a7e34cebca347d269f9b217c55c">xts_decrypt</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const unsigned char *data_key, const unsigned char *tweak_key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+<tr class="memitem:a62006a7e34cebca347d269f9b217c55c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#a62006a7e34cebca347d269f9b217c55c">xts_decrypt</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const unsigned char *data_key, const unsigned char *tweak_key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:a62006a7e34cebca347d269f9b217c55c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a sector in XTS mode of operation.  <a href="xts_8c.html#a62006a7e34cebca347d269f9b217c55c">More...</a><br /></td></tr>
 <tr class="separator:a62006a7e34cebca347d269f9b217c55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acebca9a858ccfefd05972e130723596e"><td class="memItemLeft" align="right" valign="top"><a id="acebca9a858ccfefd05972e130723596e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#acebca9a858ccfefd05972e130723596e">xts_decrypt_perform</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *data_key, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_8c.html#acebca9a858ccfefd05972e130723596e">xts_decrypt_perform</a> (unsigned long long sector, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *data_key, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:acebca9a858ccfefd05972e130723596e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs actual decryption in XTS mode. This function exists for testing purposes. <br /></td></tr>
 <tr class="separator:acebca9a858ccfefd05972e130723596e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -175,7 +175,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
           <td class="paramname"><em>cipher</em>&#160;</td>
         </tr>
         <tr>
@@ -247,7 +247,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xts_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
           <td class="paramname"><em>cipher</em>&#160;</td>
         </tr>
         <tr>

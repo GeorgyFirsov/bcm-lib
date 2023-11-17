@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['key_19',['KEY',['../cmc_8h.html#a6505276297d37e7a70682c9240bc5744',1,'KEY():&#160;cmc.h'],['../heh_8h.html#a6505276297d37e7a70682c9240bc5744',1,'KEY():&#160;heh.h'],['../xts_8h.html#a6505276297d37e7a70682c9240bc5744',1,'KEY():&#160;xts.h']]]
+  ['format_5fblocks_42',['format_blocks',['../structtagDECP__KDF__CONTEXT.html#aa38068f2263fe0099a8b5c1369059b83',1,'tagDECP_KDF_CONTEXT']]]
 ];

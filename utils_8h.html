@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">bcm-lib
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">Tiny library with cryptographic algorithms</div>
   </td>
@@ -86,7 +86,8 @@ $(document).ready(function(){initNavTree('utils_8h.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">utils.h File Reference</div>  </div>
 </div><!--header-->
@@ -97,7 +98,7 @@ $(document).ready(function(){initNavTree('utils_8h.html',''); initResizable(); }
 <div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="utils_8h__dep__incl.svg" width="527" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="utils_8h__dep__incl.svg" width="1078" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -105,9 +106,27 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ac0278c9e3d8d7df0c9ed151845f2b07e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#ac0278c9e3d8d7df0c9ed151845f2b07e">BCMLIB_STATIC_ASSERT</a>(cond,  msg)&#160;&#160;&#160;   typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]</td></tr>
+<tr class="memitem:ac0278c9e3d8d7df0c9ed151845f2b07e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#ac0278c9e3d8d7df0c9ed151845f2b07e">BCMLIB_STATIC_ASSERT</a>(cond,  msg)&#160;&#160;&#160;    typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]</td></tr>
 <tr class="memdesc:ac0278c9e3d8d7df0c9ed151845f2b07e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alignment specifier (alignas is supported since C11).  <a href="utils_8h.html#ac0278c9e3d8d7df0c9ed151845f2b07e">More...</a><br /></td></tr>
 <tr class="separator:ac0278c9e3d8d7df0c9ed151845f2b07e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f262557a278c6353b2a421c1881379e"><td class="memItemLeft" align="right" valign="top"><a id="a2f262557a278c6353b2a421c1881379e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a2f262557a278c6353b2a421c1881379e">BCMLIB_UNUSED</a>(var)&#160;&#160;&#160;((void)(var))</td></tr>
+<tr class="memdesc:a2f262557a278c6353b2a421c1881379e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to suppress unused variable warning. <br /></td></tr>
+<tr class="separator:a2f262557a278c6353b2a421c1881379e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9756f2900dbbd6b60019ffc8cba07959"><td class="memItemLeft" align="right" valign="top"><a id="a9756f2900dbbd6b60019ffc8cba07959"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a9756f2900dbbd6b60019ffc8cba07959">BCMLIB_COUNTOF</a>(arr)&#160;&#160;&#160;(sizeof((arr)) / sizeof((arr)[0]))</td></tr>
+<tr class="memdesc:a9756f2900dbbd6b60019ffc8cba07959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of elements in a static array. <br /></td></tr>
+<tr class="separator:a9756f2900dbbd6b60019ffc8cba07959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a15a298e8244c2ce224fe8129d4f1f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a58a15a298e8244c2ce224fe8129d4f1f">BCMLIB_SWAP_ENDIAN_INPLACE</a>(value)</td></tr>
+<tr class="memdesc:a58a15a298e8244c2ce224fe8129d4f1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps byte order in arbitrary integer type inplace.  <a href="utils_8h.html#a58a15a298e8244c2ce224fe8129d4f1f">More...</a><br /></td></tr>
+<tr class="separator:a58a15a298e8244c2ce224fe8129d4f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a3dac722775a85184db910f6aedd0638c"><td class="memItemLeft" align="right" valign="top"><a id="a3dac722775a85184db910f6aedd0638c"></a>
+long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8h.html#a3dac722775a85184db910f6aedd0638c">bcmlib_swap_endian_ll</a> (long long value)</td></tr>
+<tr class="memdesc:a3dac722775a85184db910f6aedd0638c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps byte order of a <code>long long</code> value. <br /></td></tr>
+<tr class="separator:a3dac722775a85184db910f6aedd0638c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Some useful helper things. </p>
@@ -133,7 +152,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;   typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]</td>
+          <td></td><td>&#160;&#160;&#160;    typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -141,6 +160,37 @@ Macros</h2></td></tr>
 <p>Alignment specifier (alignas is supported since C11). </p>
 <p>Force inlining specifier.</p>
 <p>Static assertion for C language (prior to C11). </p>
+
+</div>
+</div>
+<a id="a58a15a298e8244c2ce224fe8129d4f1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a15a298e8244c2ce224fe8129d4f1f">&#9670;&nbsp;</a></span>BCMLIB_SWAP_ENDIAN_INPLACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BCMLIB_SWAP_ENDIAN_INPLACE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                                                                                                           \</div>
+<div class="line">    {                                                                                                            \</div>
+<div class="line">        unsigned <span class="keywordtype">char</span>* bsw_internal_value = (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)&amp;value;                                              \</div>
+<div class="line">        for (<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> idx = 0, swp_idx = <span class="keyword">sizeof</span>(value) - 1; idx &lt; <span class="keyword">sizeof</span>(value) / 2; ++idx, --swp_idx) \</div>
+<div class="line">        {                                                                                                        \</div>
+<div class="line">            bsw_internal_value[idx]     = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \</div>
+<div class="line">            bsw_internal_value[swp_idx] = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \</div>
+<div class="line">            bsw_internal_value[idx]     = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \</div>
+<div class="line">        }                                                                                                        \</div>
+<div class="line">    }                                                                                                            \</div>
+<div class="line">    while (0)</div>
+</div><!-- fragment -->
+<p>Swaps byte order in arbitrary integer type inplace. </p>
 
 </div>
 </div>

@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">bcm-lib
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">Tiny library with cryptographic algorithms</div>
   </td>
@@ -117,18 +117,18 @@ typedef struct tagKEY&#160;</td><td class="memItemRight" valign="bottom"><a clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3bf59dec22c30eabbc61a83a88beba56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a3bf59dec22c30eabbc61a83a88beba56">heh_encrypt</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const unsigned char *key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+<tr class="memitem:a3bf59dec22c30eabbc61a83a88beba56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a3bf59dec22c30eabbc61a83a88beba56">heh_encrypt</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const unsigned char *key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:a3bf59dec22c30eabbc61a83a88beba56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a sector in HEH-fp mode of operation.  <a href="heh_8h.html#a3bf59dec22c30eabbc61a83a88beba56">More...</a><br /></td></tr>
 <tr class="separator:a3bf59dec22c30eabbc61a83a88beba56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cc4e0cdeee79a177657f9b1ec3b40db"><td class="memItemLeft" align="right" valign="top"><a id="a1cc4e0cdeee79a177657f9b1ec3b40db"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a1cc4e0cdeee79a177657f9b1ec3b40db">heh_encrypt_perform</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a1cc4e0cdeee79a177657f9b1ec3b40db">heh_encrypt_perform</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:a1cc4e0cdeee79a177657f9b1ec3b40db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs actual encryption in HEH-fp mode. This function exists for testing purposes. <br /></td></tr>
 <tr class="separator:a1cc4e0cdeee79a177657f9b1ec3b40db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99e3bd4c68d6299f31d0fe4c7146b986"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a99e3bd4c68d6299f31d0fe4c7146b986">heh_decrypt</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const unsigned char *key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+<tr class="memitem:a99e3bd4c68d6299f31d0fe4c7146b986"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a99e3bd4c68d6299f31d0fe4c7146b986">heh_decrypt</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const unsigned char *key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:a99e3bd4c68d6299f31d0fe4c7146b986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a sector in HEH-fp mode of operation.  <a href="heh_8h.html#a99e3bd4c68d6299f31d0fe4c7146b986">More...</a><br /></td></tr>
 <tr class="separator:a99e3bd4c68d6299f31d0fe4c7146b986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d9d78e0c4509d4444c4929b5a25cdfc"><td class="memItemLeft" align="right" valign="top"><a id="a6d9d78e0c4509d4444c4929b5a25cdfc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a6d9d78e0c4509d4444c4929b5a25cdfc">heh_decrypt_perform</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *data_key, const <a class="el" href="cmc_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, unsigned char *out, const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_8h.html#a6d9d78e0c4509d4444c4929b5a25cdfc">heh_decrypt_perform</a> (unsigned long long tweak, const unsigned char *in, unsigned long blocks, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *data_key, const <a class="el" href="cmac_8h.html#a6505276297d37e7a70682c9240bc5744">KEY</a> *tweak_key, unsigned char *out, const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *cipher)</td></tr>
 <tr class="memdesc:a6d9d78e0c4509d4444c4929b5a25cdfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs actual decryption in HEH-fp mode. This function exists for testing purposes. <br /></td></tr>
 <tr class="separator:a6d9d78e0c4509d4444c4929b5a25cdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -174,7 +174,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
           <td class="paramname"><em>cipher</em>&#160;</td>
         </tr>
         <tr>
@@ -239,7 +239,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heh_
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="cmc_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="cmac_8h.html#a0c2ef3dca32c6efbd776428179670b1b">BLOCK_CIPHER</a> *&#160;</td>
           <td class="paramname"><em>cipher</em>&#160;</td>
         </tr>
         <tr>

@@ -1,6 +1,8 @@
 <map id="include/bcmlib.h" name="include/bcmlib.h">
-<area shape="rect" id="node1" title="Library header with supported modes of operation." alt="" coords="172,5,301,32"/>
+<area shape="rect" id="node1" title="Library header with supported modes of operation." alt="" coords="327,5,456,32"/>
 <area shape="rect" id="node2" href="$cmc_8h.html" title="CMC mode of operation header." alt="" coords="5,80,145,107"/>
 <area shape="rect" id="node3" href="$heh_8h.html" title="HEH mode of operation header." alt="" coords="169,80,304,107"/>
 <area shape="rect" id="node4" href="$xts_8h.html" title="XTS mode of operation header." alt="" coords="328,80,455,107"/>
+<area shape="rect" id="node5" href="$cmac_8h.html" title="CMAC mode of operation header." alt="" coords="479,80,635,107"/>
+<area shape="rect" id="node6" href="$dec_8h.html" title="DEC mode of operation header." alt="" coords="659,80,791,107"/>
 </map>

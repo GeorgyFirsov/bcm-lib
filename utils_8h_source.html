@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">bcm-lib
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">Tiny library with cryptographic algorithms</div>
   </td>
@@ -113,9 +113,34 @@ $(document).ready(function(){initNavTree('utils_8h_source.html',''); initResizab
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="utils_8h.html#ac0278c9e3d8d7df0c9ed151845f2b07e">   37</a></span>&#160;<span class="preprocessor">#define BCMLIB_STATIC_ASSERT(cond, msg) \</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">   typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">    typedef char static_assertion_failed_##msg[(cond) ? 1 : -1]</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// !BCMLIB_UTILS_INCLUDED</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="utils_8h.html#a2f262557a278c6353b2a421c1881379e">   44</a></span>&#160;<span class="preprocessor">#define BCMLIB_UNUSED(var) ((void)(var))</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="utils_8h.html#a9756f2900dbbd6b60019ffc8cba07959">   50</a></span>&#160;<span class="preprocessor">#define BCMLIB_COUNTOF(arr) (sizeof((arr)) / sizeof((arr)[0]))</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="utils_8h.html#a58a15a298e8244c2ce224fe8129d4f1f">   56</a></span>&#160;<span class="preprocessor">#define BCMLIB_SWAP_ENDIAN_INPLACE(value)                                                                        \</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">    do                                                                                                           \</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">    {                                                                                                            \</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">        unsigned char* bsw_internal_value = (unsigned char*)&amp;value;                                              \</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">        for (unsigned long long idx = 0, swp_idx = sizeof(value) - 1; idx &lt; sizeof(value) / 2; ++idx, --swp_idx) \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">        {                                                                                                        \</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">            bsw_internal_value[idx]     = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">            bsw_internal_value[swp_idx] = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">            bsw_internal_value[idx]     = bsw_internal_value[idx] ^ bsw_internal_value[swp_idx];                 \</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">        }                                                                                                        \</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">    }                                                                                                            \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">    while (0)</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="utils_8h.html#a3dac722775a85184db910f6aedd0638c">bcmlib_swap_endian_ll</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> value);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// !BCMLIB_UTILS_INCLUDED</span></div>
+<div class="ttc" id="autils_8h_html_a3dac722775a85184db910f6aedd0638c"><div class="ttname"><a href="utils_8h.html#a3dac722775a85184db910f6aedd0638c">bcmlib_swap_endian_ll</a></div><div class="ttdeci">long long bcmlib_swap_endian_ll(long long value)</div><div class="ttdoc">Swaps byte order of a long long value.</div><div class="ttdef"><b>Definition:</b> utils.c:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

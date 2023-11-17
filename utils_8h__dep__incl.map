@@ -1,6 +1,9 @@
 <map id="include/common/utils.h" name="include/common/utils.h">
-<area shape="rect" id="node1" title="Some useful helper things." alt="" coords="183,5,358,32"/>
-<area shape="rect" id="node2" href="$cmc_8c.html" title="CMC mode of operation implementation." alt="" coords="5,80,168,107"/>
-<area shape="rect" id="node3" href="$heh_8c.html" title="HEH mode of operation implementation." alt="" coords="193,80,349,107"/>
-<area shape="rect" id="node4" href="$xts_8c.html" title="XTS mode of operation implementation." alt="" coords="373,80,521,107"/>
+<area shape="rect" id="node1" title="Some useful helper things." alt="" coords="463,5,637,32"/>
+<area shape="rect" id="node2" href="$utils_8c.html" title="Some useful helper things." alt="" coords="5,80,151,107"/>
+<area shape="rect" id="node3" href="$cmac_8c.html" title="CMAC mode of operation implementation." alt="" coords="175,80,354,107"/>
+<area shape="rect" id="node4" href="$cmc_8c.html" title="CMC mode of operation implementation." alt="" coords="378,80,541,107"/>
+<area shape="rect" id="node5" href="$dec_8c.html" title="DEC mode of operation implementation." alt="" coords="565,80,719,107"/>
+<area shape="rect" id="node6" href="$heh_8c.html" title="HEH mode of operation implementation." alt="" coords="744,80,900,107"/>
+<area shape="rect" id="node7" href="$xts_8c.html" title="XTS mode of operation implementation." alt="" coords="924,80,1072,107"/>
 </map>

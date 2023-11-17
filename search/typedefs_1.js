@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['key_53',['KEY',['../cmc_8h.html#a6505276297d37e7a70682c9240bc5744',1,'KEY():&#160;cmc.h'],['../heh_8h.html#a6505276297d37e7a70682c9240bc5744',1,'KEY():&#160;heh.h'],['../xts_8h.html#a6505276297d37e7a70682c9240bc5744',1,'KEY():&#160;xts.h']]]
+  ['cmac_5fverify_5fresult_119',['cmac_verify_result',['../cmac_8h.html#ad42b7e81a0150a0e31f0ad5c5def1a5a',1,'cmac.h']]],
+  ['cmacp_5fsubkey_120',['CMACP_SUBKEY',['../cmac_8c.html#a6a5b2782b7ebecba3aba1c9fc49bc897',1,'cmac.c']]]
 ];
