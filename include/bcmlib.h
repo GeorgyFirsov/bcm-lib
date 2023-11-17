@@ -14,6 +14,8 @@
 #include "modes/cmc/cmc.h"
 #include "modes/heh/heh.h"
 #include "modes/xts/xts.h"
+#include "modes/cmac/cmac.h"
+#include "modes/dec/dec.h"
 
 
 #endif  // !BCMLIB_MODES_INCLUDED

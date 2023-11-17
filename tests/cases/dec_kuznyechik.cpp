@@ -1,6 +1,6 @@
 /**
- * @file cmc_kuznyechik.cpp
- * @brief Test cases for Kuznyechik in CMC mode of operation.
+ * @file dec_kuznyechik.cpp
+ * @brief Test cases for Kuznyechik in DEC mode of operation.
  */
 
 #include "test_common.hpp"
@@ -9,19 +9,33 @@
 namespace test::data::enc {
 
 /**
- * @brief Ciphertext for CMC-KUZNYECHIK algorithm.
+ * @brief Partition and sector numbers for DEC-KUZNYECHIK algorithm.
+ */
+static constexpr auto partition = tweak;
+static constexpr auto sector    = tweak;
+
+
+/**
+ * @brief Partition and sector counters for DEC-KUZNYECHIK algorithm.
+ */
+static constexpr auto partition_counter = 0xcafebabe;
+static constexpr auto sector_counter    = 0xdeadbeef;
+
+
+/**
+ * @brief Ciphertext for DEC-KUZNYECHIK algorithm.
  */
 BCMLIB_TESTS_ALIGN16 static constexpr unsigned char ciphertext[] = {
-    0xf2, 0x5b, 0x30, 0x56, 0xfa, 0x1f, 0x09, 0x8a,
-    0x6a, 0x77, 0xe5, 0x66, 0x07, 0xc2, 0x15, 0x67,
-    0x9a, 0xee, 0x76, 0xe6, 0x12, 0xe8, 0x35, 0x71,
-    0x70, 0xa7, 0x18, 0xb0, 0xda, 0x94, 0x66, 0xcd
+    0x7c, 0x03, 0x84, 0x59, 0x53, 0xde, 0xdd, 0x3a, 
+    0xe2, 0x8f, 0xde, 0xd7, 0x99, 0xe3, 0xed, 0x9f,
+    0x77, 0x02, 0x77, 0xb9, 0x33, 0x75, 0x29, 0x13, 
+    0x87, 0x8e, 0xae, 0x66, 0x2a, 0x57, 0x8b, 0xff
 };
 
 }  // namespace test::data::enc
 
 
-TEST(CmcKuznyechik, Encrypt)
+TEST(DecKuznyechik, Encrypt)
 {
     using namespace test::data;
 
@@ -40,15 +54,15 @@ TEST(CmcKuznyechik, Encrypt)
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
 
-    cmc_encrypt(enc::tweak, enc::plaintext, enc::blocks, enc::primary_key,
-                enc::secondary_key, ciphertext, &cipher);
-
+    dec_encrypt(enc::partition, enc::partition_counter, enc::sector, enc::sector_counter,
+                enc::plaintext, enc::blocks, enc::primary_key, ciphertext, &cipher);
+    
     EXPECT_PRED4(test::details::EqualDataUnits, enc::ciphertext,
                  ciphertext, enc::blocks, KUZNYECHIK_BLOCK_SIZE);
 }
 
 
-TEST(CmcKuznyechik, Decrypt)
+TEST(DecKuznyechik, Decrypt)
 {
     using namespace test::data;
 
@@ -67,8 +81,8 @@ TEST(CmcKuznyechik, Decrypt)
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
 
-    cmc_decrypt(enc::tweak, enc::ciphertext, enc::blocks, enc::primary_key,
-                enc::secondary_key, plaintext, &cipher);
+    dec_decrypt(enc::partition, enc::partition_counter, enc::sector, enc::sector_counter,
+                enc::ciphertext, enc::blocks, enc::primary_key, plaintext, &cipher);
 
     EXPECT_PRED4(test::details::EqualDataUnits, enc::plaintext,
                  plaintext, enc::blocks, KUZNYECHIK_BLOCK_SIZE);
