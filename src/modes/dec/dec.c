@@ -185,8 +185,9 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
     kdf_p  = _mm_set_epi64x(bcmlib_swap_endian_ll(partition_counter),
                             bcmlib_swap_endian_ll(partition));
 
-    kdf2_perform((const unsigned char*)&kdf_iv, internal_key_size, (const unsigned char*)&kdf_p,
-                 NULL, NULL, &kdf_context, partition_key_buffer.key);
+    r1323665_1_022_2018_kdf2_perform((const unsigned char*)&kdf_iv, internal_key_size,
+                                     (const unsigned char*)&kdf_p, NULL, NULL,
+                                     &kdf_context, partition_key_buffer.key);
 
     //
     // Derive sector key via:
@@ -195,7 +196,8 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
     //   K_s = kdf2(K_p, IV, P)
     //
 
-    normalized_sector_counter = decp_fraction_ceil(sector_counter, decp_calculate_v(blocks, cipher->block_size));
+    normalized_sector_counter = decp_fraction_ceil(sector_counter,
+                                                   decp_calculate_v(blocks, cipher->block_size));
 
     kdf_iv = _mm_set_epi64x(0, bcmlib_swap_endian_ll(partition));
     kdf_p  = _mm_set_epi64x(bcmlib_swap_endian_ll(sector),
@@ -203,8 +205,9 @@ void dec_encrypt_perform(unsigned long long partition, unsigned long long partit
 
     kdf_context.key_buffer = (unsigned char*)&partition_key;
 
-    kdf2(partition_key_buffer.key, (const unsigned char*)&kdf_iv, internal_key_size,
-         (const unsigned char*)&kdf_p, NULL, NULL, &kdf_context, sector_key_buffer.key);
+    r1323665_1_022_2018_kdf2(partition_key_buffer.key, (const unsigned char*)&kdf_iv,
+                             internal_key_size, (const unsigned char*)&kdf_p, NULL, NULL,
+                             &kdf_context, sector_key_buffer.key);
 
     //
     // Let's perform encryption

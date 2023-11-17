@@ -121,7 +121,7 @@ option(KDFLIB_KERNEL_MODE ""                            ${BCMLIB_BUILD_KERNEL_LI
 FetchContent_Declare(
     kdf-lib
     GIT_REPOSITORY https://github.com/GeorgyFirsov/kdf-lib.git
-    GIT_TAG        4cdec9d  # kdf-lib is not released for now
+    GIT_TAG        v1.0.1
 )
 
 FetchContent_MakeAvailable(galois-lib bc-lib kdf-lib)
