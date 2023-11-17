@@ -257,7 +257,6 @@ if (BCMLIB_BUILD_LIB)
     # On non-Windows builds it is necessary to add some intrinsics support
     #
     if (NOT BCMLIB_WINDOWS_BUILD)
-        target_compile_options(bcm-lib PRIVATE 			-mpclmul)
         target_compile_options(bcm-lib PRIVATE          -msse4.1)
     endif (NOT BCMLIB_WINDOWS_BUILD)
 
