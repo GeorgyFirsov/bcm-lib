@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
-project(bcm-lib VERSION 1.0.1)
+project(bcm-lib VERSION 1.0.2)
 
 #
 # Global config
